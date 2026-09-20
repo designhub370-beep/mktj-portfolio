@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDownRight, ArrowUpRight, Check, Copy } from "lucide-react";
 import { useState, type FormEvent } from "react";
 
-import meridianWatch from "@/assets/meridian-watch.jpg";
-import vantaAthletics from "@/assets/vanta-athletics.jpg";
+import groceryDesign from "@/assets/designhub-grocery.png.asset.json";
+import handbagDesign from "@/assets/designhub-handbag.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,10 +27,14 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  ["01", "Graphic Design", "Brand identity, logos, packaging & campaign creatives"],
-  ["02", "Web Development", "Portfolio, business, e-commerce & interactive websites"],
-  ["03", "Video Editing", "Reels, commercials, brand films & colour grading"],
-  ["04", "UI/UX & Motion", "Product design, motion graphics, 3D & social content"],
+  ["01", "Graphic Design", "Posters, flyers, banners, brochures, menus, invitations & print design"],
+  ["02", "Brand Identity", "Logos, business cards, stationery, packaging & brand guidelines"],
+  ["03", "Social & Advertising", "Social posts, thumbnails, ad creatives, product posts & campaigns"],
+  ["04", "Album Design", "Wedding albums, photo books, covers, layouts & retouching"],
+  ["05", "Web & UI/UX", "Portfolio, business, e-commerce, landing pages & product interfaces"],
+  ["06", "Video & Animation", "Reels, commercials, editing, motion graphics, intros & animated videos"],
+  ["07", "Writing", "Scripts, screenplays, plays, ad copy, captions & creative concepts"],
+  ["08", "Custom Creative Service", "Tell us what you want made—even if it is not listed here"],
 ];
 
 const process = [
@@ -49,7 +53,9 @@ function Index() {
       "MKTJ Project Enquiry",
       `Name: ${data.get("name") ?? ""}`,
       `Project: ${data.get("project") ?? ""}`,
+      `Custom service: ${data.get("customService") ?? ""}`,
       `Budget: ${data.get("budget") ?? ""}`,
+      `Custom budget: ${data.get("customBudget") ?? ""}`,
       `Details: ${data.get("details") ?? ""}`,
     ].join("\n");
 
@@ -100,7 +106,7 @@ function Index() {
         <section id="services" className="section-border py-16 sm:py-24">
           <div className="section-heading">
             <div><p className="eyebrow">Capabilities</p><h2>What we do</h2></div>
-            <span>01—04</span>
+            <span>01—08</span>
           </div>
           <div className="mt-9 grid gap-3 lg:grid-cols-2">
             {services.map(([number, title, description]) => (
@@ -122,20 +128,23 @@ function Index() {
           </div>
           <div className="mt-9 grid gap-6 md:grid-cols-2">
             <article className="work-card group">
-              <div className="overflow-hidden"><img src={vantaAthletics} alt="Concept campaign for Vanta Athletics" width={1088} height={1360} className="work-image" /></div>
+              <div className="overflow-hidden"><img src={handbagDesign.url} alt="DESIGNHUB handbag promotional graphic design sample" width={768} height={960} className="work-image" /></div>
               <div className="work-meta">
-                <div><h3>Vanta Athletics</h3><p>Concept campaign · Film & identity</p></div>
-                <span>Video</span>
+                <div><h3>Handbag Sale Creative</h3><p>DESIGNHUB sample · Product advertising</p></div>
+                <span>Graphic</span>
               </div>
             </article>
             <article className="work-card group md:mt-20">
-              <div className="overflow-hidden"><img src={meridianWatch} alt="Concept web direction for Meridian Watches" width={1088} height={1360} loading="lazy" className="work-image" /></div>
+              <div className="overflow-hidden"><img src={groceryDesign.url} alt="DESIGNHUB grocery delivery promotional graphic design sample" width={768} height={960} loading="lazy" className="work-image" /></div>
               <div className="work-meta">
-                <div><h3>Meridian Watches</h3><p>Concept project · Web & art direction</p></div>
-                <span>Web</span>
+                <div><h3>Grocery Delivery Creative</h3><p>DESIGNHUB sample · Promotional design</p></div>
+                <span>Graphic</span>
               </div>
             </article>
           </div>
+          <p className="work-contact-note">
+            Want to see more samples? Email us at <a href="mailto:designhub370@gmail.com">designhub370@gmail.com</a>
+          </p>
         </section>
 
         <section id="process" className="section-border py-16 sm:py-24">
@@ -164,9 +173,13 @@ function Index() {
             <form className="space-y-4" onSubmit={copyBrief}>
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="field-label">Your name<input required name="name" className="field" placeholder="Name" /></label>
-                <label className="field-label">Project type<select required name="project" className="field"><option value="">Select service</option><option>Brand identity</option><option>Website</option><option>Video editing</option><option>UI/UX or motion</option><option>Full creative partnership</option></select></label>
+                <label className="field-label">Project type<select required name="project" className="field"><option value="">Select service</option><option>Graphic design</option><option>Brand identity</option><option>Social media or advertising</option><option>Album design</option><option>Website or UI/UX</option><option>Video editing or animation</option><option>Script or play writing</option><option>Custom creative service</option></select></label>
               </div>
-              <label className="field-label">Budget range<select required name="budget" className="field"><option value="">Select range</option><option>₹25k–₹50k</option><option>₹50k–₹1L</option><option>₹1L–₹3L</option><option>₹3L+</option></select></label>
+              <label className="field-label">Custom service<input name="customService" className="field" placeholder="Example: animated video, wedding album, play writing..." /></label>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="field-label">Budget range<select name="budget" className="field"><option value="">Select range</option><option>₹5k–₹15k</option><option>₹15k–₹30k</option><option>₹30k–₹50k</option><option>₹50k–₹1L</option><option>₹1L+</option></select></label>
+                <label className="field-label">Custom budget (₹)<input name="customBudget" inputMode="numeric" className="field" placeholder="Your amount" /></label>
+              </div>
               <label className="field-label">A little about the project<textarea required name="details" rows={4} className="field resize-none" placeholder="Goal, timeline and what you need..." /></label>
               <button type="submit" className="button-primary button-large w-full justify-center">
                 {copied ? <><Check size={18} /> Brief copied</> : <><Copy size={18} /> Copy project brief</>}
