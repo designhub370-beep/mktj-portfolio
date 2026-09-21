@@ -111,7 +111,6 @@ function Index() {
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a className="button-primary button-large" href="#work">Explore the work <ArrowDownRight size={18} /></a>
-              <a className="button-secondary button-large" href="#contact">Share an idea <ArrowUpRight size={18} /></a>
             </div>
           </div>
         </section>
