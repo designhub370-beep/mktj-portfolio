@@ -2,8 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDownRight, HeartHandshake, Lightbulb, Sparkles, Target } from "lucide-react";
 import { useEffect } from "react";
 
-import groceryDesign from "@/assets/designhub-grocery.png.asset.json";
-import handbagDesign from "@/assets/designhub-handbag.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -147,14 +145,14 @@ function Index() {
           </div>
           <div className="mt-9 grid gap-6 md:grid-cols-2">
             <article className="work-card group">
-              <div className="overflow-hidden"><img src={handbagDesign.url} alt="DESIGNHUB handbag promotional graphic design sample" width={768} height={960} className="work-image" /></div>
+              <div className="overflow-hidden"><img src="/images/designhub-handbag.png" alt="DESIGNHUB handbag promotional graphic design sample" width={768} height={960} className="work-image" /></div>
               <div className="work-meta">
                 <div><h3>Handbag Sale Creative</h3><p>DESIGNHUB sample · Product advertising</p></div>
                 <span>Graphic</span>
               </div>
             </article>
             <article className="work-card group md:mt-20">
-              <div className="overflow-hidden"><img src={groceryDesign.url} alt="DESIGNHUB grocery delivery promotional graphic design sample" width={768} height={960} loading="lazy" className="work-image" /></div>
+              <div className="overflow-hidden"><img src="/images/designhub-grocery.png" alt="DESIGNHUB grocery delivery promotional graphic design sample" width={768} height={960} loading="lazy" className="work-image" /></div>
               <div className="work-meta">
                 <div><h3>Grocery Delivery Creative</h3><p>DESIGNHUB sample · Promotional design</p></div>
                 <span>Graphic</span>
