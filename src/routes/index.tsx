@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDownRight, ArrowUpRight, Check, Copy, HeartHandshake, Lightbulb, Sparkles, Target } from "lucide-react";
-import { useEffect, useState, type FormEvent } from "react";
+import { ArrowDownRight, HeartHandshake, Lightbulb, Sparkles, Target } from "lucide-react";
+import { useEffect } from "react";
 
 import groceryDesign from "@/assets/designhub-grocery.png.asset.json";
 import handbagDesign from "@/assets/designhub-handbag.png.asset.json";
@@ -62,8 +62,6 @@ const experience = [
 ];
 
 function Index() {
-  const [copied, setCopied] = useState(false);
-
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
     const observer = new IntersectionObserver(
@@ -82,24 +80,6 @@ function Index() {
     return () => observer.disconnect();
   }, []);
 
-  const copyBrief = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const brief = [
-      "MKTJ Project Enquiry",
-      `Name: ${data.get("name") ?? ""}`,
-      `Project: ${data.get("project") ?? ""}`,
-      `Custom service: ${data.get("customService") ?? ""}`,
-      `Budget: ${data.get("budget") ?? ""}`,
-      `Custom budget: ${data.get("customBudget") ?? ""}`,
-      `Details: ${data.get("details") ?? ""}`,
-    ].join("\n");
-
-    await navigator.clipboard.writeText(brief);
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 2500);
-  };
-
   return (
     <main className="site-shell min-h-screen overflow-hidden bg-ink font-body text-mist">
       <div className="ambient-lights" aria-hidden="true" />
@@ -111,14 +91,11 @@ function Index() {
           <a href="#top" className="font-display text-2xl font-extrabold text-bright" aria-label="MKTJ home">
             MKTJ<span className="text-volt">.</span>
           </a>
-          <div className="flex items-center gap-5">
-            <nav className="hidden items-center gap-7 text-sm text-fog md:flex" aria-label="Main navigation">
-              <a className="transition-colors hover:text-bright" href="#services">Services</a>
-              <a className="transition-colors hover:text-bright" href="#work">Work</a>
-              <a className="transition-colors hover:text-bright" href="#experience">Experience</a>
-            </nav>
-            <a className="button-primary" href="#contact">Let&apos;s talk <ArrowUpRight size={16} /></a>
-          </div>
+          <nav className="hidden items-center gap-7 text-sm text-fog md:flex" aria-label="Main navigation">
+            <a className="transition-colors hover:text-bright" href="#services">Services</a>
+            <a className="transition-colors hover:text-bright" href="#work">Work</a>
+            <a className="transition-colors hover:text-bright" href="#experience">Experience</a>
+          </nav>
         </header>
 
         <section id="top" className="grid min-h-[76svh] items-end gap-10 py-14 sm:py-20 lg:grid-cols-[1.35fr_0.65fr] lg:pb-24 lg:pt-32">
@@ -134,7 +111,6 @@ function Index() {
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a className="button-primary button-large" href="#work">Explore the work <ArrowDownRight size={18} /></a>
-              <a className="button-secondary button-large" href="#contact">Share an idea <ArrowUpRight size={18} /></a>
             </div>
           </div>
         </section>
@@ -230,32 +206,6 @@ function Index() {
                 <p className="mt-3 text-sm leading-relaxed text-fog">{description}</p>
               </article>
             ))}
-          </div>
-        </section>
-
-        <section id="contact" className="section-border py-16 sm:py-24" data-reveal>
-          <div className="contact-grid">
-            <div>
-               <p className="eyebrow">Start a conversation</p>
-               <h2 className="mt-5 max-w-2xl font-display text-4xl font-black leading-tight text-bright sm:text-6xl">Your idea comes first.</h2>
-               <p className="mt-5 max-w-lg leading-relaxed text-mist/80">No pressure and no oversized package. Share what you are building and MKTJ will suggest what actually makes sense.</p>
-            </div>
-            <form className="space-y-4" onSubmit={copyBrief}>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="field-label">Your name<input required name="name" className="field" placeholder="Name" /></label>
-                <label className="field-label">What are you considering?<select name="project" className="field"><option value="">Not sure yet</option><option>Graphic design</option><option>Brand identity</option><option>Social media or advertising</option><option>Album design</option><option>Website or UI/UX</option><option>Video editing or animation</option><option>Script or play writing</option><option>Custom creative service</option></select></label>
-              </div>
-              <label className="field-label">Custom service<input name="customService" className="field" placeholder="Example: animated video, wedding album, play writing..." /></label>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="field-label">Comfortable budget (optional)<select name="budget" className="field"><option value="">Let&apos;s discuss</option><option>₹5k–₹15k</option><option>₹15k–₹30k</option><option>₹30k–₹50k</option><option>₹50k–₹1L</option><option>₹1L+</option><option>Custom budget</option></select></label>
-                <label className="field-label">Custom budget (₹)<input name="customBudget" inputMode="numeric" className="field" placeholder="Your amount" /></label>
-              </div>
-              <label className="field-label">A little about the project<textarea required name="details" rows={4} className="field resize-none" placeholder="Goal, timeline and what you need..." /></label>
-              <button type="submit" className="button-primary button-large w-full justify-center">
-                {copied ? <><Check size={18} /> Brief copied</> : <><Copy size={18} /> Copy project brief</>}
-              </button>
-              <p className="text-xs leading-relaxed text-fog">Nothing is ordered or charged here. Paste the copied note into WhatsApp, email or Instagram DM to begin a conversation.</p>
-            </form>
           </div>
         </section>
 
