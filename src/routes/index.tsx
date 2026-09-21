@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDownRight, ArrowUpRight, Check, Copy, HeartHandshake, Lightbulb, Sparkles, Target } from "lucide-react";
-import { useEffect, useState, type FormEvent } from "react";
+import { ArrowDownRight, HeartHandshake, Lightbulb, Sparkles, Target } from "lucide-react";
+import { useEffect } from "react";
 
 import groceryDesign from "@/assets/designhub-grocery.png.asset.json";
 import handbagDesign from "@/assets/designhub-handbag.png.asset.json";
