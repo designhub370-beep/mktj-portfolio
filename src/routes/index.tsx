@@ -91,14 +91,11 @@ function Index() {
           <a href="#top" className="font-display text-2xl font-extrabold text-bright" aria-label="MKTJ home">
             MKTJ<span className="text-volt">.</span>
           </a>
-          <div className="flex items-center gap-5">
-            <nav className="hidden items-center gap-7 text-sm text-fog md:flex" aria-label="Main navigation">
-              <a className="transition-colors hover:text-bright" href="#services">Services</a>
-              <a className="transition-colors hover:text-bright" href="#work">Work</a>
-              <a className="transition-colors hover:text-bright" href="#experience">Experience</a>
-            </nav>
-            <a className="button-primary" href="#contact">Let&apos;s talk <ArrowUpRight size={16} /></a>
-          </div>
+          <nav className="hidden items-center gap-7 text-sm text-fog md:flex" aria-label="Main navigation">
+            <a className="transition-colors hover:text-bright" href="#services">Services</a>
+            <a className="transition-colors hover:text-bright" href="#work">Work</a>
+            <a className="transition-colors hover:text-bright" href="#experience">Experience</a>
+          </nav>
         </header>
 
         <section id="top" className="grid min-h-[76svh] items-end gap-10 py-14 sm:py-20 lg:grid-cols-[1.35fr_0.65fr] lg:pb-24 lg:pt-32">
