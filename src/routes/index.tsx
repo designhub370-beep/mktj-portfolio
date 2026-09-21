@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDownRight, ArrowUpRight, Check, Copy } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { ArrowDownRight, ArrowUpRight, Check, Copy, HeartHandshake, Lightbulb, Sparkles, Target } from "lucide-react";
+import { useEffect, useState, type FormEvent } from "react";
 
 import groceryDesign from "@/assets/designhub-grocery.png.asset.json";
 import handbagDesign from "@/assets/designhub-handbag.png.asset.json";
@@ -43,8 +43,44 @@ const process = [
   ["03", "Deliver", "Production-ready files and a polished launch, without the chaos."],
 ];
 
+const experience = [
+  {
+    icon: Lightbulb,
+    title: "Ideas before decoration",
+    description: "Every visual starts with your audience, message and goal—not a recycled template.",
+  },
+  {
+    icon: Target,
+    title: "Built for real use",
+    description: "From a social post to a full website, the final work is prepared for the place it will actually live.",
+  },
+  {
+    icon: Sparkles,
+    title: "One creative partner",
+    description: "Design, web, video, animation and writing can move together without five different teams.",
+  },
+];
+
 function Index() {
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
 
   const copyBrief = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -79,31 +115,38 @@ function Index() {
             <nav className="hidden items-center gap-7 text-sm text-fog md:flex" aria-label="Main navigation">
               <a className="transition-colors hover:text-bright" href="#services">Services</a>
               <a className="transition-colors hover:text-bright" href="#work">Work</a>
-              <a className="transition-colors hover:text-bright" href="#process">Process</a>
+              <a className="transition-colors hover:text-bright" href="#experience">Experience</a>
             </nav>
-            <a className="button-primary" href="#contact">Enquire <ArrowUpRight size={16} /></a>
+            <a className="button-primary" href="#contact">Let&apos;s talk <ArrowUpRight size={16} /></a>
           </div>
         </header>
 
         <section id="top" className="grid min-h-[76svh] items-end gap-10 py-14 sm:py-20 lg:grid-cols-[1.35fr_0.65fr] lg:pb-24 lg:pt-32">
-          <div>
-            <p className="eyebrow">Independent creative studio · India</p>
+          <div data-reveal>
+            <p className="eyebrow">MKTJ creative portfolio · India</p>
             <h1 className="mt-6 max-w-5xl font-display text-5xl font-black leading-[0.92] text-bright sm:text-7xl lg:text-[7.5rem]">
               Ideas that <span className="text-volt">move</span> markets.
             </h1>
           </div>
-          <div className="lg:pb-2">
+          <div className="lg:pb-2" data-reveal>
             <p className="max-w-xl text-base leading-relaxed text-mist/85 sm:text-lg">
-              MKTJ creates sharp identities, high-performance websites and cinematic video for brands that refuse to blend in.
+              A selection of graphic design, websites, video, animation and writing made to help growing businesses look impossible to ignore.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a className="button-primary button-large" href="#contact">Start a project <ArrowUpRight size={18} /></a>
-              <a className="button-secondary button-large" href="#work">See our work <ArrowDownRight size={18} /></a>
+              <a className="button-primary button-large" href="#work">Explore the work <ArrowDownRight size={18} /></a>
+              <a className="button-secondary button-large" href="#contact">Share an idea <ArrowUpRight size={18} /></a>
             </div>
           </div>
         </section>
 
-        <section id="services" className="section-border py-16 sm:py-24">
+        <div className="marquee section-border" aria-label="MKTJ creative disciplines">
+          <div className="marquee-track">
+            <span>GRAPHIC DESIGN</span><i>✦</i><span>WEB DEVELOPMENT</span><i>✦</i><span>VIDEO EDITING</span><i>✦</i><span>ANIMATION</span><i>✦</i><span>BRAND IDENTITY</span><i>✦</i><span>CREATIVE WRITING</span><i>✦</i>
+            <span aria-hidden="true">GRAPHIC DESIGN</span><i aria-hidden="true">✦</i><span aria-hidden="true">WEB DEVELOPMENT</span><i aria-hidden="true">✦</i><span aria-hidden="true">VIDEO EDITING</span><i aria-hidden="true">✦</i><span aria-hidden="true">ANIMATION</span><i aria-hidden="true">✦</i><span aria-hidden="true">BRAND IDENTITY</span><i aria-hidden="true">✦</i><span aria-hidden="true">CREATIVE WRITING</span><i aria-hidden="true">✦</i>
+          </div>
+        </div>
+
+        <section id="services" className="section-border py-16 sm:py-24" data-reveal>
           <div className="section-heading">
             <div><p className="eyebrow">Capabilities</p><h2>What we do</h2></div>
             <span>01—08</span>
@@ -121,7 +164,7 @@ function Index() {
           </div>
         </section>
 
-        <section id="work" className="section-border py-16 sm:py-24">
+        <section id="work" className="section-border py-16 sm:py-24" data-reveal>
           <div className="section-heading">
             <div><p className="eyebrow">Selected concepts</p><h2>Work built to be felt</h2></div>
             <span>2026</span>
@@ -147,7 +190,34 @@ function Index() {
           </p>
         </section>
 
-        <section id="process" className="section-border py-16 sm:py-24">
+        <section id="experience" className="section-border py-16 sm:py-24" data-reveal>
+          <div className="section-heading">
+            <div><p className="eyebrow">How MKTJ works</p><h2>Experience you can feel in the work</h2></div>
+            <span>Approach</span>
+          </div>
+          <div className="experience-grid">
+            {experience.map(({ icon: Icon, title, description }, index) => (
+              <article className="experience-item" key={title}>
+                <div className="experience-icon"><Icon size={20} /></div>
+                <span>0{index + 1}</span>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="belief-section section-border" data-reveal>
+          <div className="belief-mark" aria-hidden="true"><HeartHandshake size={34} /></div>
+          <p className="eyebrow">Why accessible pricing?</p>
+          <h2>New businesses deserve great design before they have big funding.</h2>
+          <div className="belief-copy">
+            <p>MKTJ keeps pricing practical because an early-stage idea should not look small just because its budget is small.</p>
+            <p>We are not here to inflate a bill. We are here to understand what will genuinely help, use the budget wisely and create work that helps the business move forward.</p>
+          </div>
+        </section>
+
+        <section id="process" className="section-border py-16 sm:py-24" data-reveal>
           <div className="section-heading">
             <div><p className="eyebrow">No layers of confusion</p><h2>One studio. End to end.</h2></div>
             <span>Process</span>
@@ -163,28 +233,28 @@ function Index() {
           </div>
         </section>
 
-        <section id="contact" className="section-border py-16 sm:py-24">
+        <section id="contact" className="section-border py-16 sm:py-24" data-reveal>
           <div className="contact-grid">
             <div>
-              <p className="eyebrow">Have a project?</p>
-              <h2 className="mt-5 max-w-2xl font-display text-4xl font-black leading-tight text-bright sm:text-6xl">Let&apos;s build something bold.</h2>
-              <p className="mt-5 max-w-lg leading-relaxed text-mist/80">Tell us the shape of your idea. We&apos;ll turn it into a ready-to-share project brief.</p>
+               <p className="eyebrow">Start a conversation</p>
+               <h2 className="mt-5 max-w-2xl font-display text-4xl font-black leading-tight text-bright sm:text-6xl">Your idea comes first.</h2>
+               <p className="mt-5 max-w-lg leading-relaxed text-mist/80">No pressure and no oversized package. Share what you are building and MKTJ will suggest what actually makes sense.</p>
             </div>
             <form className="space-y-4" onSubmit={copyBrief}>
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="field-label">Your name<input required name="name" className="field" placeholder="Name" /></label>
-                <label className="field-label">Project type<select required name="project" className="field"><option value="">Select service</option><option>Graphic design</option><option>Brand identity</option><option>Social media or advertising</option><option>Album design</option><option>Website or UI/UX</option><option>Video editing or animation</option><option>Script or play writing</option><option>Custom creative service</option></select></label>
+                <label className="field-label">What are you considering?<select name="project" className="field"><option value="">Not sure yet</option><option>Graphic design</option><option>Brand identity</option><option>Social media or advertising</option><option>Album design</option><option>Website or UI/UX</option><option>Video editing or animation</option><option>Script or play writing</option><option>Custom creative service</option></select></label>
               </div>
               <label className="field-label">Custom service<input name="customService" className="field" placeholder="Example: animated video, wedding album, play writing..." /></label>
               <div className="grid gap-4 sm:grid-cols-2">
-                <label className="field-label">Budget range<select name="budget" className="field"><option value="">Select range</option><option>₹5k–₹15k</option><option>₹15k–₹30k</option><option>₹30k–₹50k</option><option>₹50k–₹1L</option><option>₹1L+</option></select></label>
+                <label className="field-label">Comfortable budget (optional)<select name="budget" className="field"><option value="">Let&apos;s discuss</option><option>₹5k–₹15k</option><option>₹15k–₹30k</option><option>₹30k–₹50k</option><option>₹50k–₹1L</option><option>₹1L+</option><option>Custom budget</option></select></label>
                 <label className="field-label">Custom budget (₹)<input name="customBudget" inputMode="numeric" className="field" placeholder="Your amount" /></label>
               </div>
               <label className="field-label">A little about the project<textarea required name="details" rows={4} className="field resize-none" placeholder="Goal, timeline and what you need..." /></label>
               <button type="submit" className="button-primary button-large w-full justify-center">
                 {copied ? <><Check size={18} /> Brief copied</> : <><Copy size={18} /> Copy project brief</>}
               </button>
-              <p className="text-xs leading-relaxed text-fog">Your details stay on your device. Paste the copied brief into WhatsApp, email or Instagram DM.</p>
+              <p className="text-xs leading-relaxed text-fog">Nothing is ordered or charged here. Paste the copied note into WhatsApp, email or Instagram DM to begin a conversation.</p>
             </form>
           </div>
         </section>
