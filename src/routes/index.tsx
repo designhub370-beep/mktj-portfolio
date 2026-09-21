@@ -62,8 +62,6 @@ const experience = [
 ];
 
 function Index() {
-  const [copied, setCopied] = useState(false);
-
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
     const observer = new IntersectionObserver(
@@ -81,24 +79,6 @@ function Index() {
     elements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
   }, []);
-
-  const copyBrief = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const brief = [
-      "MKTJ Project Enquiry",
-      `Name: ${data.get("name") ?? ""}`,
-      `Project: ${data.get("project") ?? ""}`,
-      `Custom service: ${data.get("customService") ?? ""}`,
-      `Budget: ${data.get("budget") ?? ""}`,
-      `Custom budget: ${data.get("customBudget") ?? ""}`,
-      `Details: ${data.get("details") ?? ""}`,
-    ].join("\n");
-
-    await navigator.clipboard.writeText(brief);
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 2500);
-  };
 
   return (
     <main className="site-shell min-h-screen overflow-hidden bg-ink font-body text-mist">
