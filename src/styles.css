@@ -89,6 +89,23 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .work-meta span { font-size: .68rem; text-transform: uppercase; letter-spacing: .14em; color: var(--volt); }
 .work-contact-note { margin-top: 2rem; text-align: center; font-size: .88rem; color: var(--fog); }
 .work-contact-note a { color: var(--volt); font-weight: 700; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .25rem; }
+.marquee { width: 100%; overflow: hidden; padding: 1rem 0; color: var(--bright); }
+.marquee-track { display: flex; width: max-content; align-items: center; gap: 1.5rem; animation: marquee 28s linear infinite; font-family: var(--font-display); font-size: .78rem; font-weight: 800; }
+.marquee-track span { white-space: nowrap; }
+.marquee-track i { color: var(--volt); font-style: normal; }
+.experience-grid { display: grid; gap: 1px; margin-top: 2.5rem; overflow: hidden; border: 1px solid var(--line); background: var(--line); }
+.experience-item { position: relative; min-height: 19rem; background: color-mix(in oklab, var(--ink) 95%, transparent); padding: 1.5rem; transition: background-color .25s ease; }
+.experience-item:hover { background: color-mix(in oklab, var(--bright) 6%, var(--ink)); }
+.experience-item > span { position: absolute; right: 1.5rem; top: 1.5rem; font-size: .68rem; color: var(--fog); }
+.experience-icon { display: grid; height: 2.75rem; width: 2.75rem; place-items: center; border: 1px solid color-mix(in oklab, var(--volt) 35%, transparent); border-radius: 50%; color: var(--volt); }
+.experience-item h3 { margin-top: 6rem; max-width: 15rem; font-family: var(--font-display); font-size: 1.45rem; font-weight: 750; line-height: 1.1; color: var(--bright); }
+.experience-item p { margin-top: 1rem; max-width: 24rem; font-size: .86rem; line-height: 1.7; color: var(--fog); }
+.belief-section { position: relative; padding: 4rem 0; }
+.belief-section h2 { margin-top: 1.5rem; max-width: 68rem; font-family: var(--font-display); font-size: clamp(2.35rem, 6vw, 5.8rem); font-weight: 850; line-height: .98; color: var(--bright); }
+.belief-copy { display: grid; gap: 1.25rem; margin-top: 2.5rem; max-width: 54rem; font-size: 1rem; line-height: 1.75; color: var(--mist); }
+.belief-mark { display: grid; width: 4.5rem; height: 4.5rem; place-items: center; border: 1px solid color-mix(in oklab, var(--volt) 35%, transparent); border-radius: 50%; color: var(--volt); margin-bottom: 2rem; animation: breathe 3.5s ease-in-out infinite; }
+[data-reveal] { opacity: 0; transform: translateY(2rem); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.75,.25,1); }
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
 .contact-grid { position: relative; display: grid; gap: 3rem; overflow: hidden; border: 1px solid var(--line); border-radius: .35rem; background: linear-gradient(135deg, color-mix(in oklab, var(--bright) 8%, transparent), transparent); padding: 1.5rem; backdrop-filter: blur(24px); }
 .field-label { display: grid; gap: .45rem; font-size: .7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: var(--fog); }
 .field { width: 100%; border: 1px solid var(--line); border-radius: .3rem; background: color-mix(in oklab, var(--ink) 78%, transparent); padding: .8rem .9rem; font-size: .9rem; font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--bright); outline: none; }
@@ -97,6 +114,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 @keyframes drift { 0%,100% { transform: translate3d(-6%,-4%,0) rotate(-14deg); } 50% { transform: translate3d(8%,6%,0) rotate(-14deg); } }
 @keyframes drift-two { 0%,100% { transform: translate3d(10%,8%,0) rotate(16deg); } 50% { transform: translate3d(-8%,-6%,0) rotate(16deg); } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes breathe { 0%,100% { transform: scale(1); box-shadow: 0 0 0 0 color-mix(in oklab, var(--volt) 0%, transparent); } 50% { transform: scale(1.05); box-shadow: 0 0 0 .8rem color-mix(in oklab, var(--volt) 5%, transparent); } }
 
-@media (min-width: 768px) { .contact-grid { grid-template-columns: 1fr 1fr; padding: 3rem; } }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .glass-panel { animation: none; } .work-image, .button-primary, .button-secondary { transition: none; } }
+@media (min-width: 768px) { .contact-grid { grid-template-columns: 1fr 1fr; padding: 3rem; } .experience-grid { grid-template-columns: repeat(3, 1fr); } .belief-copy { grid-template-columns: 1fr 1fr; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .glass-panel, .marquee-track, .belief-mark { animation: none; } [data-reveal] { opacity: 1; transform: none; transition: none; } .work-image, .button-primary, .button-secondary { transition: none; } }
