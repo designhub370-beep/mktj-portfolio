@@ -8,4 +8,4 @@
 - [x] Reframe the site as a portfolio instead of an order page
 - [x] Add honest experience and client-first pricing sections
 - [x] Add refined portfolio animations with reduced-motion support
-- [ ] Verify the refreshed mobile and desktop layouts
+- [x] Verify the refreshed mobile and desktop layouts
