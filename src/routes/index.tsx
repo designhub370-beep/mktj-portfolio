@@ -209,32 +209,6 @@ function Index() {
           </div>
         </section>
 
-        <section id="contact" className="section-border py-16 sm:py-24" data-reveal>
-          <div className="contact-grid">
-            <div>
-               <p className="eyebrow">Start a conversation</p>
-               <h2 className="mt-5 max-w-2xl font-display text-4xl font-black leading-tight text-bright sm:text-6xl">Your idea comes first.</h2>
-               <p className="mt-5 max-w-lg leading-relaxed text-mist/80">No pressure and no oversized package. Share what you are building and MKTJ will suggest what actually makes sense.</p>
-            </div>
-            <form className="space-y-4" onSubmit={copyBrief}>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="field-label">Your name<input required name="name" className="field" placeholder="Name" /></label>
-                <label className="field-label">What are you considering?<select name="project" className="field"><option value="">Not sure yet</option><option>Graphic design</option><option>Brand identity</option><option>Social media or advertising</option><option>Album design</option><option>Website or UI/UX</option><option>Video editing or animation</option><option>Script or play writing</option><option>Custom creative service</option></select></label>
-              </div>
-              <label className="field-label">Custom service<input name="customService" className="field" placeholder="Example: animated video, wedding album, play writing..." /></label>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="field-label">Comfortable budget (optional)<select name="budget" className="field"><option value="">Let&apos;s discuss</option><option>₹5k–₹15k</option><option>₹15k–₹30k</option><option>₹30k–₹50k</option><option>₹50k–₹1L</option><option>₹1L+</option><option>Custom budget</option></select></label>
-                <label className="field-label">Custom budget (₹)<input name="customBudget" inputMode="numeric" className="field" placeholder="Your amount" /></label>
-              </div>
-              <label className="field-label">A little about the project<textarea required name="details" rows={4} className="field resize-none" placeholder="Goal, timeline and what you need..." /></label>
-              <button type="submit" className="button-primary button-large w-full justify-center">
-                {copied ? <><Check size={18} /> Brief copied</> : <><Copy size={18} /> Copy project brief</>}
-              </button>
-              <p className="text-xs leading-relaxed text-fog">Nothing is ordered or charged here. Paste the copied note into WhatsApp, email or Instagram DM to begin a conversation.</p>
-            </form>
-          </div>
-        </section>
-
         <footer className="flex flex-col gap-3 border-t border-line py-7 text-xs text-fog sm:flex-row sm:items-center sm:justify-between">
           <span className="font-display text-base font-bold text-mist">MKTJ<span className="text-volt">.</span></span>
           <span>Graphic · Web · Video · Motion</span>
